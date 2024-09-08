@@ -3,15 +3,15 @@
                         <img src="../../template/images/b1.jpg" class="card-img-top">
                         <div class="card-body">
                             <div class="auth-box">
-                                <span style="background-color: #063547;" class="py-1 px-3 text-white rounded-pill">
+                                <span style="background-color: var(--primary-color);" class="py-1 px-3 text-white rounded-pill">
                                     {{book.author}}
                                 </span>
                             </div>
                             <h5 class="card-title mt-3 fw-semibold">{{book.name}}</h5>
-                            <p class="card-text">{{book.description}}</p>
+                            <p class="card-text">{{truncatedText}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="#" class="card-link">Read More</a>
-                                <p style="background-color: #063547" class="py-1 px-2 text-white badge mb-0">{{book.uploadDate}}</p>
+                                <p style="background-color:var(--primary-color);" class="py-1 px-2 text-white badge mb-0">{{book.uploadDate}}</p>
                             </div>
                         </div>
                         <span 
@@ -43,11 +43,20 @@
                 else{
                     return 'bg-danger'
                 }
+            },
+
+            truncatedText(){
+                if(this.book.description.length > 80) {
+                    return this.book.description.slice(0,80) + '...';                    
+                }
+                return this.book.description;
             }
         }
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.card-text{
+    min-height: 70px;
+}
 </style>
